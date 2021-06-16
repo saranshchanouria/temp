@@ -9,6 +9,8 @@ jobs:
         uses: actions/checkout@v2
       - name: siesta
         uses: ShantanuDash/siesta-run-action@main
+        with:
+            dir-name: 'aps'
        
       - name: Upload Results
         uses: actions/upload-artifact@v2
