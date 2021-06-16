@@ -1,0 +1,128 @@
+SystemName          iron porphyrin
+SystemLabel         ip
+
+# Species and atoms
+ NumberOfAtoms          37
+ NumberOfSpecies           4
+ %block ChemicalSpeciesLabel
+    1       7      N 
+    2       6      C 
+    3       1      H 
+    4      26      Fe2
+ %endblock ChemicalSpeciesLabel
+ 
+ # Basis
+ PAO.BasisType         split
+ PAO.BasisSize         DZP
+ PAO.EnergyShift       50 meV
+ 
+ LatticeConstant  1.000000  Ang
+ AtomicCoordinatesFormat     Fractional
+ %block LatticeVectors
+   12.7312126160    0.0000000000    0.0000000000
+    0.0000000000   12.7312126160    0.0000000000
+    0.0000000000    0.0000000000   12.7312126160
+ %endblock LatticeVectors
+ %block AtomicCoordinatesAndAtomicSpecies
+    0.5183603760    0.3417397440    0.4985649590    1
+    0.4923353790    0.5001747610    0.3501061800    1
+    0.5097091790    0.4997498390    0.6464495660    1
+    0.5192401410    0.6580858830    0.4989733990    1
+    0.5145021680    0.2750532630    0.4113305210    2
+    0.4856400190    0.4133637250    0.2822375600    2
+    0.5238830450    0.2749275570    0.5832529070    2
+    0.4862518910    0.5871979000    0.2824519870    2
+    0.4972909090    0.3081341390    0.3103016610    2
+    0.5222147110    0.1662568750    0.4435646830    2
+    0.4720702170    0.4462019210    0.1763552730    2
+    0.5279674530    0.1661633850    0.5506197210    2
+    0.4724582430    0.5547202830    0.1764895620    2
+    0.5194026830    0.3082684580    0.6873050330    2
+    0.4985798600    0.6922837500    0.3107760850    2
+    0.5106611850    0.4117496010    0.7156228420    2
+    0.5158821940    0.7250119450    0.4119015630    2
+    0.5110036730    0.5875678660    0.7158522010    2
+    0.5249913330    0.7246545550    0.5838388200    2
+    0.5202195640    0.6910780670    0.6878022550    2
+    0.5069584850    0.4460039730    0.8232787250    2
+    0.5241563920    0.8336834910    0.4444208740    2
+    0.5071579810    0.5530440810    0.8234193330    2
+    0.5297175050    0.8334753510    0.5514868500    2
+    0.4921680690    0.2497689430    0.2485416230    3
+    0.5214449170    0.1000754540    0.3905665870    3
+    0.4651415940    0.3939154740    0.1099680360    3
+    0.5328326820    0.0999999940    0.6033821700    3
+    0.4659050410    0.6072203520    0.1102335450    3
+    0.5216633080    0.2496581970    0.7489330770    3
+    0.4938788120    0.7508257030    0.2491511700    3
+    0.5226992960    0.7495257260    0.7495763900    3
+    0.5058494210    0.3933852610    0.8897515540    3
+    0.5238366720    0.8999999760    0.3915885090    3
+    0.5062460900    0.6054899690    0.8900319340    3
+    0.5348584060    0.8994753360    0.6044284110    3
+    0.5248350500    0.4999022190    0.4999128280    4
+ %endblock AtomicCoordinatesAndAtomicSpecies
+ 
+ %block kgrid_Monkhorst_Pack
+   1   0   0    0.000000
+   0   2   0    0.000000
+   0   0   2    0.000000
+ %endblock kgrid_Monkhorst_Pack
+ 
+ SpinPolarized         .false.        # Logical parameters are: yes or no
+ xc.functional         GGA            # Exchange-correlation functional
+ xc.authors            PBE            # Exchange-correlation version
+ 
+ SolutionMethod        diagon         # OrderN or Diagon
+ MaxSCFIterations      300            # Maximum number of SCF iter
+ DM.MixingWeight       0.02          # New DM amount for next SCF cycle
+ DM.Tolerance          1.d-5          # Tolerance in maximum difference     
+ MeshCutoff            370.0 Ry       # Mesh cutoff. real space mesh
+ DM.NumberPulay         4             
+ ElectronicTemperature  25 meV        # Temp. for Fermi smearing
+ 
+ # MD options
+ MD.TypeOfRun           cg            # Type of dynamics:
+ MD.NumCGsteps          50           # Number of CG steps for 
+ MD.MaxCGDispl          0.1 Ang       # Maximum atomic displacement 
+ MD.MaxForceTol         0.04 eV/Ang   # Tolerance in the maximum 
+ 
+ # Output options
+ WriteCoorInitial      .true.
+ WriteEigenvalues      .true.
+
+ # Options for saving/reading
+ DM.UseSaveDM          .true.         # to use continuation files
+ UseSaveData           .true.
+
+	# -- SAVING WAVE/BAND/EIGEN/KPOINTS/ANIMATION INFORMATION --
+
+WriteKbands            	T
+WriteBands           	T
+WriteCoorXmol 		T
+WriteCoorStep       	T
+WriteKpoints        	T
+WriteCoorCerius		T
+WriteHS             	T
+WriteForces           	T
+WriteMullikenPop	1
+SaveHS			T
+XML.Write              	T
+
+BandLinesScale      ReciprocalLatticeVectors
+
+%block BandLines
+1  0.0000000000 0.0000000000 0.0000000000  \Gamma
+10 0.0000000000 0.5000000000 0.0000000000  X
+10 0.0000000000 0.0000000000 0.5000000000  Y
+10 0.0000000000 0.0000000000 0.0000000000  \Gamma
+10 0.5000000000 0.0000000000 0.0000000000  Z
+10 0.5000000000 0.5000000000 0.5000000000  R
+10 0.0000000000 0.0000000000 0.0000000000  \Gamma
+10 0.5000000000 0.0000000000 0.5000000000  T
+10 0.5000000000 0.5000000000 0.0000000000  U
+10 0.0000000000 0.0000000000 0.0000000000  \Gamma
+10 0.0000000000 0.5000000000 0.5000000000  V
+10 0.0000000000 0.0000000000 0.0000000000  \Gamma
+%endblock BandLines
+
