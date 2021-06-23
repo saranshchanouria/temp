@@ -1,0 +1,37 @@
+name: Manually triggered workflow To Run Siesta
+on:
+  workflow_dispatch:
+    inputs:
+      file-name:
+        description: 'Name of the input file(with extention)'
+        default: 'ip.fdf'
+        required: true
+
+      dir-name:
+        description: 'Name of the directory(folder) input files'
+        default: 'ip'
+        required: true
+
+      out-name:
+        description: 'Name of the output file'
+        default: 'ip.out'
+        required: true
+jobs:
+  DFT-calculations-Siesta:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: siesta-action
+        uses: ShantanuDash/siesta-action@parallel
+        with:
+            file-name: ${{ github.event.inputs.file-name }}
+            dir-name: ${{ github.event.inputs.dir-name }}
+            out-name: ${{ github.event.inputs.out-name }}
+       
+      - name: Upload Results
+        uses: actions/upload-artifact@v2
+        with:
+            name: DFT-Output
+            path: ${{ github.event.inputs.dir-name }}/
+            
