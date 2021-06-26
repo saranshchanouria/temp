@@ -39,7 +39,7 @@ jobs:
       - name: commit
         run: |
           # Stage the file, commit and push
-          git add .
+          git add ${{ github.event.inputs.dir-name }}
           git commit -m "bands updated automatically"
           git push origin main
       
@@ -62,7 +62,7 @@ jobs:
       - name: commit
         run: |
           # Stage the file, commit and push
-          git add .
+          git add ${{ github.event.inputs.dir-name }}
           git commit -m "band updated automatically"
           git push origin main
   #job3
@@ -84,7 +84,7 @@ jobs:
       - name: commit
         run: |
           # Stage the file, commit and push
-          git add .
+          git add ${{ github.event.inputs.dir-name }}
           git commit -m "band updated automatically"
           git push origin main
 #job4
@@ -106,7 +106,7 @@ jobs:
       - name: commit
         run: |
           # Stage the file, commit and push
-          git add .
+          git add ${{ github.event.inputs.dir-name }}
           git commit -m "band updated automatically"
           git push origin main
   DFT-calculations-Siesta5:
@@ -127,7 +127,7 @@ jobs:
       - name: commit
         run: |
           # Stage the file, commit and push
-          git add .
+          git add ${{ github.event.inputs.dir-name }}
           git commit -m "band updated automatically"
           git push origin main
   DFT-calculations-Siesta6:
@@ -148,7 +148,7 @@ jobs:
       - name: commit
         run: |
           # Stage the file, commit and push
-          git add .
+          git add ${{ github.event.inputs.dir-name }}
           git commit -m "band updated automatically"
           git push origin main
           
