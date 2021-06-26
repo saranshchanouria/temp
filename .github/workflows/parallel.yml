@@ -1,0 +1,159 @@
+name: Manually triggered workflow To Run Siesta
+on:
+  workflow_dispatch:
+    inputs:
+      file-name:
+        description: 'Name of the input file(with extention)'
+        default: 'h2.fdf'
+        required: true
+
+      dir-name:
+        description: 'Name of the directory(folder) input files'
+        default: 'input-folder'
+        required: true
+
+      out-name:
+        description: 'Name of the output file'
+        default: 'h2.out'
+        required: true
+jobs:
+#job1
+  DFT-calculations-Siesta:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+            ref: 'parallel'
+      - name: siesta-action
+        uses: ShantanuDash/siesta-action@parallel
+        with:
+            file-name: ${{ github.event.inputs.file-name }}
+            dir-name: ${{ github.event.inputs.dir-name }}
+            out-name: ${{ github.event.inputs.out-name }}
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add .
+          git commit -m "bands updated automatically"
+          git push origin main
+      
+  #job2
+  DFT-calculations-Siesta2:
+    needs: DFT-calculations-Siesta
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Siesta 2
+        run: |
+          cd ${{ github.event.inputs.dir-name }}
+          timeout --foreground 5.75h ./siesta < ${{ github.event.inputs.file-name }} | tee ${{ github.event.inputs.out-name }}
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add .
+          git commit -m "band updated automatically"
+          git push origin main
+  #job3
+  DFT-calculations-Siesta3:
+    needs: DFT-calculations-Siesta2
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Siesta 3
+        run: |
+          cd ${{ github.event.inputs.dir-name }}
+          timeout --foreground 5.75h ./siesta < ${{ github.event.inputs.file-name }} | tee ${{ github.event.inputs.out-name }}
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add .
+          git commit -m "band updated automatically"
+          git push origin main
+#job4
+  DFT-calculations-Siesta4:
+    needs: DFT-calculations-Siesta3
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Siesta 4
+        run: |
+          cd ${{ github.event.inputs.dir-name }}
+          timeout --foreground 5.75h ./siesta < ${{ github.event.inputs.file-name }} | tee ${{ github.event.inputs.out-name }}
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add .
+          git commit -m "band updated automatically"
+          git push origin main
+  DFT-calculations-Siesta5:
+    needs: DFT-calculations-Siesta4
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Siesta 5
+        run: |
+          cd ${{ github.event.inputs.dir-name }}
+          timeout --foreground 5.75h ./siesta < ${{ github.event.inputs.file-name }} | tee ${{ github.event.inputs.out-name }}
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add .
+          git commit -m "band updated automatically"
+          git push origin main
+  DFT-calculations-Siesta6:
+    needs: DFT-calculations-Siesta5
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Siesta 6
+        run: |
+          cd ${{ github.event.inputs.dir-name }}
+          timeout --foreground 5.75h ./siesta < ${{ github.event.inputs.file-name }} | tee ${{ github.event.inputs.out-name }}
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add .
+          git commit -m "band updated automatically"
+          git push origin main
+          
+      - name: Upload Results
+        uses: actions/upload-artifact@v2
+        with:
+            name: DFT-Output
+            path: ${{ github.event.inputs.dir-name }}/
