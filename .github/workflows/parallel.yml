@@ -41,7 +41,7 @@ jobs:
           # Stage the file, commit and push
           git add ${{ github.event.inputs.dir-name }}
           git commit -m "bands updated automatically"
-          git push origin main
+          git push origin parallel
       
   #job2
   DFT-calculations-Siesta2:
@@ -64,7 +64,7 @@ jobs:
           # Stage the file, commit and push
           git add ${{ github.event.inputs.dir-name }}
           git commit -m "band updated automatically"
-          git push origin main
+          git push origin parallel
   #job3
   DFT-calculations-Siesta3:
     needs: DFT-calculations-Siesta2
@@ -86,7 +86,7 @@ jobs:
           # Stage the file, commit and push
           git add ${{ github.event.inputs.dir-name }}
           git commit -m "band updated automatically"
-          git push origin main
+          git push origin parallel
 #job4
   DFT-calculations-Siesta4:
     needs: DFT-calculations-Siesta3
@@ -108,7 +108,7 @@ jobs:
           # Stage the file, commit and push
           git add ${{ github.event.inputs.dir-name }}
           git commit -m "band updated automatically"
-          git push origin main
+          git push origin parallel
   DFT-calculations-Siesta5:
     needs: DFT-calculations-Siesta4
     runs-on: ubuntu-latest
@@ -129,7 +129,7 @@ jobs:
           # Stage the file, commit and push
           git add ${{ github.event.inputs.dir-name }}
           git commit -m "band updated automatically"
-          git push origin main
+          git push origin parallel
   DFT-calculations-Siesta6:
     needs: DFT-calculations-Siesta5
     runs-on: ubuntu-latest
@@ -150,7 +150,7 @@ jobs:
           # Stage the file, commit and push
           git add ${{ github.event.inputs.dir-name }}
           git commit -m "band updated automatically"
-          git push origin main
+          git push origin parallel
           
       - name: Upload Results
         uses: actions/upload-artifact@v2
