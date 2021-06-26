@@ -50,6 +50,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+        with:
+            ref: 'parallel'
       - name: Siesta 2
         run: |
           cd ${{ github.event.inputs.dir-name }}
@@ -72,6 +74,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+        with:
+            ref: 'parallel'
       - name: Siesta 3
         run: |
           cd ${{ github.event.inputs.dir-name }}
@@ -94,6 +98,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+        with:
+            ref: 'parallel'
       - name: Siesta 4
         run: |
           cd ${{ github.event.inputs.dir-name }}
@@ -115,6 +121,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+        with:
+            ref: 'parallel'
       - name: Siesta 5
         run: |
           cd ${{ github.event.inputs.dir-name }}
@@ -136,6 +144,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+        with:
+            ref: 'parallel'
       - name: Siesta 6
         run: |
           cd ${{ github.event.inputs.dir-name }}
